@@ -71,6 +71,8 @@ async fn setup_spincore(game_dir: &Path) {
     }
     zip_extract(&spincore, &game_dir.join("BepInEx").join("plugins"))
         .expect("failed to extract SpinCore.zip");
+    println!("Deleting temp file...");
+    fs::remove_file(spincore).expect("failed to delete SpinCore.zip");
     println!("SpinCore installed!");
 }
 
