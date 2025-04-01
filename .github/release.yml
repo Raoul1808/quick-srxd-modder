@@ -1,0 +1,35 @@
+name: Build Release
+
+on:
+  workflow_dispatch:
+  create:
+    tags:
+      - '*'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  publish-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build release
+      run: cargo build --release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: quick-srxd-modder-linux
+        path: target/release/quick-srxd-modder
+
+  publish-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build release
+      run: cargo build --release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: quick-srxd-modder-win
+        path: target/release/quick-srxd-modder.exe
