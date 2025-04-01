@@ -3,6 +3,11 @@ name = "quick-srxd-modder"
 version = "0.1.0"
 edition = "2024"
 
+[profile.release]
+opt-level = "z"
+strip = true
+lto = true
+
 [dependencies]
 futures-util = "0.3.31"
 indicatif = "0.17.11"
